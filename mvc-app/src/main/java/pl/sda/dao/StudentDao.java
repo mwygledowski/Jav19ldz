@@ -4,24 +4,21 @@ import pl.sda.model.Student;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.apache.commons.lang3.StringUtils.containsIgnoreCase;
 
 public class StudentDao {
 
     private static List<Student> students = loadMockData();
 
     public void addStudent(Student student){
-        students.add(student);
+        throw new UnsupportedOperationException();
     }
 
     public List<Student> getStudents(){
-        return students;
+        throw new UnsupportedOperationException();
     }
 
     public List<Student> findByName(String name){
-       return students.stream().filter(s -> containsIgnoreCase(s.getFirstName() + s.getLastName(), name)).collect(Collectors.toList());
+        throw new UnsupportedOperationException();
     }
 
     public Student getStudent(int id){
