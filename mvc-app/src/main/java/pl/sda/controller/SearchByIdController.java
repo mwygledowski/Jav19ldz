@@ -23,7 +23,7 @@ public class SearchByIdController extends HttpServlet {
             throws ServletException, IOException {
         String id = req.getParameter("studentId");
         Student student = studentDao.getStudent(isNotBlank(id) ? Integer.valueOf(id) : 1);
-        req.setAttribute("student", student);
+        req.setAttribute("students", Arrays.asList(student));
         req.getRequestDispatcher("/WEB-INF/view/student-info.jsp").forward(req, resp);
     }
 }
