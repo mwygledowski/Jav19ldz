@@ -18,13 +18,13 @@
                      height="192">
             </div>
             <div class="col-md-5" id="info">
-                <h3><a style="color:#989a9c " href="/produkt?id=${product.id}">${product.brand} ${product.model}</a>
+                <h3><a style="color:#989a9c " href="${pageContext.request.contextPath}/produkt?id=${product.id}">${product.brand} ${product.model}</a>
                 </h3>
             </div>
             <div class="col-md-3" id="price">
                 <h5><fmt:formatNumber value="${product.price}" type="currency" minFractionDigits="2"/></h5>
 
-                <form action="/usun-z-koszyka" method="POST">
+                <form action="${pageContext.request.contextPath}/usun-z-koszyka" method="POST">
                     <button type="submit" class="btn btn-default" name="productId" value="${product.id}">Usuń</button>
                 </form>
             </div>
@@ -37,7 +37,7 @@
     </div>
     <div class="row">
         <div class="col-md-4">
-            <form action="/kup-i-zaplac" method="POST">
+            <form action="${pageContext.request.contextPath}/kup-i-zaplac" method="POST">
                 <button type="submit" class="btn btn-default" value="${product.id}">Kup i Zapłać</button>
             </form>
         </div>

@@ -1,4 +1,4 @@
-<form action="/produkty" method="get">
+<form action="${pageContext.request.contextPath}/produkty" method="get">
     <c:forEach items="${brands}" var="brand">
         <div class="form-check">
 

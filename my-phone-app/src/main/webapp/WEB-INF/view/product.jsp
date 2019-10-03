@@ -19,7 +19,7 @@
                  height="192">
         </div>
         <div class="col-md-5" id="info">
-            <h3><a style="color:#989a9c " href="/produkt?id=${product.id}">${product.brand} ${product.model}</a></h3>
+            <h3><a style="color:#989a9c " href="${pageContext.request.contextPath}/produkt?id=${product.id}">${product.brand} ${product.model}</a></h3>
             <h6>System operacyjny:${product.operatingSystem}</h6>
             <h6>Przednia kamera:${product.primaryCameraMp}</h6>
             <h6>Tylna kamera:${product.secondaryCameraMp}</h6>
@@ -28,10 +28,10 @@
             <fmt:setLocale value="pl_PL"/>
             <h5><fmt:formatNumber value="${product.price}" type="currency" minFractionDigits="2"/></h5>
 
-            <form action="/dodaj-do-koszyka" method="POST">
+            <form action="${pageContext.request.contextPath}/dodaj-do-koszyka" method="POST">
                 <button type="submit" class="btn btn-default" name="productId" value="${product.id}">Do koszyka</button>
             </form>
-            <form action="/kup" method="POST">
+            <form action="${pageContext.request.contextPath}/kup" method="POST">
                 <button type="submit" class="btn btn-default" name="productId" value="${product.id}">Kup teraz</button>
             </form>
         </div>
