@@ -19,6 +19,6 @@ public class DeleteFromBucket extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Long productId = Long.valueOf(req.getParameter("productId"));
         bucketService.deleteProduct(req, productId);
-        resp.sendRedirect("/koszyk");
+        resp.sendRedirect(req.getContextPath() + "/koszyk");
     }
 }

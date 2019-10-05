@@ -37,9 +37,18 @@
     </div>
     <div class="row">
         <div class="col-md-4">
+           <c:choose>
+            <c:when test="${isAuthenticated}">
             <form action="${pageContext.request.contextPath}/kup-i-zaplac" method="POST">
                 <button type="submit" class="btn btn-default" value="${product.id}">Kup i Zapłać</button>
             </form>
+            </c:when>
+            <c:otherwise>
+                <form action="${pageContext.request.contextPath}/login" method="GET">
+                    <button type="submit" class="btn btn-default">Zaloguj się</button>
+                </form>
+            </c:otherwise>
+           </c:choose>
         </div>
     </div>
 
