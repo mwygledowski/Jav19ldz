@@ -49,5 +49,18 @@ public class ToDoDao {
                 .collect(Collectors.toList());
     }
 
+    public boolean updateStatus(long id, String status) {
+        ToDoEntity toDo = getToDo(id);
+        if (toDo != null) {
+            toDo.setDone(status);
+            return true;
+        }
+            return false;
+    }
+
+    public ToDoEntity getToDo(long id) {
+        return entities.stream().filter(i -> i.getId() == id).findAny().orElse(null);
+    }
+
 
 }

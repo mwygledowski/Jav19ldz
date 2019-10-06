@@ -37,7 +37,9 @@
                 <td>${entity.deadline}</td>
                 <td>${entity.description}</td>
                 <td>
-                    <button type="button" class="btn btn-success">Done</button>
+                    <form action="${pageContext.request.contextPath}/to-do/markAsDone" method="POST">
+                    <button type="submit" class="btn btn-success" name="toDoId" value="${entity.id}">Done</button>
+                    </form>
                 </td>
                 <td>
                     <button type="button" class="btn btn-info">Edit</button>
