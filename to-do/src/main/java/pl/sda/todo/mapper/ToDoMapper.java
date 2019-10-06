@@ -3,13 +3,16 @@ package pl.sda.todo.mapper;
 import pl.sda.todo.entity.ToDoEntity;
 import pl.sda.todo.model.Category;
 import pl.sda.todo.model.ToDoModel;
+import pl.sda.todo.service.IdGeneratorService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ToDoMapper {
 
     public static final String YES = "Y";
+    public static final String NO = "N";
 
     public static List<ToDoModel> map(List<ToDoEntity> entities) {
         return entities.stream()
@@ -28,4 +31,19 @@ public class ToDoMapper {
                 .done(entity.getDone().equals(YES))
                 .build();
     }
+
+    public static ToDoEntity map(String login, ToDoModel model) {
+        return ToDoEntity.builder()
+                .id(IdGeneratorService.generateId())
+                .name(model.getName())
+                .category(model.getCategory().toString())
+                .creationDate(LocalDateTime.now())
+                .deadline(model.getDeadline())
+                .description(model.getDescription())
+                .login(login)
+                .done(NO)
+                .build();
+    }
 }
+
+

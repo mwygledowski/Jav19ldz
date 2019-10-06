@@ -10,7 +10,31 @@ import java.util.stream.Collectors;
 import static pl.sda.todo.service.IdGeneratorService.generateId;
 
 public class ToDoDao {
+
     private static List<ToDoEntity> entities = loadMockData();
+
+    public List<ToDoEntity> getEntities(String login) {
+        return entities.stream()
+                .filter(toDoEntity -> toDoEntity.getLogin().equals(login))
+                .collect(Collectors.toList());
+    }
+
+    public boolean updateStatus(long id, String status) {
+        ToDoEntity toDo = getToDo(id);
+        if (toDo != null) {
+            toDo.setDone(status);
+            return true;
+        }
+        return false;
+    }
+
+    public ToDoEntity getToDo(long id) {
+        return entities.stream().filter(i -> i.getId() == id).findAny().orElse(null);
+    }
+
+    public boolean add(ToDoEntity toDoEntity) {
+        return entities.add(toDoEntity);
+    }
 
     private static List<ToDoEntity> loadMockData() {
         List<ToDoEntity> mockedEntities = new ArrayList<>();
@@ -39,28 +63,6 @@ public class ToDoDao {
 
         mockedEntities.add(entity1);
         mockedEntities.add(entity2);
-
         return mockedEntities;
     }
-
-    public List<ToDoEntity> getEntities(String login) {
-        return entities.stream()
-                .filter(toDoEntity -> toDoEntity.getLogin().equals(login))
-                .collect(Collectors.toList());
-    }
-
-    public boolean updateStatus(long id, String status) {
-        ToDoEntity toDo = getToDo(id);
-        if (toDo != null) {
-            toDo.setDone(status);
-            return true;
-        }
-            return false;
-    }
-
-    public ToDoEntity getToDo(long id) {
-        return entities.stream().filter(i -> i.getId() == id).findAny().orElse(null);
-    }
-
-
 }
