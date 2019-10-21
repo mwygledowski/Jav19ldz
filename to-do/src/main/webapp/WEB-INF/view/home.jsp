@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: Marcin
@@ -38,7 +39,7 @@
                 <td>${entity.description}</td>
                 <td>
                     <form action="${pageContext.request.contextPath}/to-do/markAsDone" method="POST">
-                    <button type="submit" class="btn btn-success" name="toDoId" value="${entity.id}">Done</button>
+                        <button type="submit" class="btn btn-success" name="toDoId" value="${entity.id}">Done</button>
                     </form>
                 </td>
                 <td>
@@ -52,6 +53,37 @@
             <c:set var="i" value="${i+1}"/>
         </c:forEach>
     </table>
+
+    <form action="/to-do/add" method="post">
+        <div>
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title">
+        </div>
+
+        <div>
+            <label for="category">Category:</label>
+            <select id="category" name="category">
+                <c:forEach items="${categories}" var="category">
+                    <option value="${category}">${category}</option>
+                </c:forEach>
+            </select>
+        </div>
+
+        <div>
+            <label for="deadline">Deadline:</label>
+            <input type="datetime-local" name="deadline" id="deadline">
+        </div>
+        <div>
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description">
+        </div>
+        <div>
+            <button type="submit" class="btn btn-success">Add</button>
+        </div>
+    </form>
+    <form action="/to-do/logout" method="get">
+        <button type="submit" class="btn btn-success">Log out</button>
+    </form>
 </div>
 <script src="/webjars/jquery/3.4.1/jquery.min.js"/>
 <script src="/webjars/bootstrap/3.4.0/js/bootstrap.min.js"/>
